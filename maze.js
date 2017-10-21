@@ -2,13 +2,10 @@ var loser=false;
 
 
 window.onload = function(){
-    var boundaries = document.querySelectorAll(".boundary"); 
-    for(var i=0; i < boundaries.length; i++){
-        boundaries[i].addEventListener("mouseover",gameOver);
-    }    
+    activateborder();
 
     document.getElementById("start").addEventListener("click", start);  
-    document.getElementById("end").addEventListener("mouseover", endGame);
+    document.getElementById("end").addEventListener("mouseleave", endGame);
 };
 
 function gameOver(){
@@ -26,7 +23,22 @@ function start(){
         boundary[i].className = "boundary";
         document.getElementById("status").innerHTML="Retry";
     } 
+    activateborder();
 
+}
+
+function activateborder(){
+    var boundaries = document.querySelectorAll(".boundary"); 
+    for (var i=0; i< boundaries.length-1; i++){
+        boundaries[i].addEventListener("mouseover", gameOver);
+    }
+}
+
+function deactivateborder(){
+    var boundaries = document.querySelectorAll(".boundary"); 
+    for (var i=0; i< boundaries.length-1; i++){
+        boundaries[i].removeEventListener("mouseover", gameOver);
+    }
 }
 
 function endGame(){
@@ -34,5 +46,6 @@ function endGame(){
        document.getElementById("status").innerHTML="You Win!";
        loser = false;
     }
+    deactivateborder();
 
 }
