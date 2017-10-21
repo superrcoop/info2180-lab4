@@ -18,13 +18,13 @@ function gameOver(){
 }
 
 function start(){
+    loser=false;
     var boundary = document.querySelectorAll(".boundary");
     for (var i = 0; i < boundary.length-1; i++) {
         boundary[i].className = "boundary";
         document.getElementById("status").innerHTML="Retry";
     } 
     activateborder();
-
 }
 
 function activateborder(){
